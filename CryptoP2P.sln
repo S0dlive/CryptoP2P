@@ -1,8 +1,29 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F2904AA6-2E5E-492A-ADB8-F4C37AE45784}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0BA8CE87-6751-4205-9847-6CC764D2F8E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoP2P.Network", "src\CryptoP2P.Network\CryptoP2P.Network.csproj", "{C852A542-17DF-4966-AB48-A4643B75F070}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoP2P.Tests", "test\CryptoP2P.Tests\CryptoP2P.Tests.csproj", "{8BB5D004-58C0-4AE2-8CD3-9FE890A3D95A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C852A542-17DF-4966-AB48-A4643B75F070}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C852A542-17DF-4966-AB48-A4643B75F070}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C852A542-17DF-4966-AB48-A4643B75F070}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C852A542-17DF-4966-AB48-A4643B75F070}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BB5D004-58C0-4AE2-8CD3-9FE890A3D95A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BB5D004-58C0-4AE2-8CD3-9FE890A3D95A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BB5D004-58C0-4AE2-8CD3-9FE890A3D95A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BB5D004-58C0-4AE2-8CD3-9FE890A3D95A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C852A542-17DF-4966-AB48-A4643B75F070} = {0BA8CE87-6751-4205-9847-6CC764D2F8E7}
+		{8BB5D004-58C0-4AE2-8CD3-9FE890A3D95A} = {F2904AA6-2E5E-492A-ADB8-F4C37AE45784}
 	EndGlobalSection
 EndGlobal
