@@ -100,6 +100,7 @@ public class Node
         _server = TcpListener.Create(11247);
         _server.Start();
     }
+    
     private void ClientSetup()
     {
         _client = new TcpClient();
