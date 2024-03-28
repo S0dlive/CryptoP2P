@@ -1,8 +1,10 @@
+using System.Text.Json.Serialization;
 using Microsoft.Extensions.Logging;
 namespace CryptoP2P.Network.BlockChain;
 
 public class BlockChain
 {
+    [JsonIgnore]
     private readonly ILogger _logger;
     public BlockChain()
     {
