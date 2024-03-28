@@ -12,7 +12,7 @@ public class Client
     public DateTime ConnectedSince { get; set; }
     private byte[] receivedBuffer { get; set; }
 
-    public async Task ConnectWithServer(TcpClient client)
+    public void ConnectWithServer(TcpClient client)
     {
         TCPClient.ReceiveBufferSize = 4096;
         TCPClient.SendBufferSize = 4096;
