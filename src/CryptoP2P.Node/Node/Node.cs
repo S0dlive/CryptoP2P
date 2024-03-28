@@ -5,30 +5,24 @@ using Microsoft.Extensions.Logging;
 
 namespace CryptoP2P.Network.Node;
 
-public class Node : Peer
+public static class Node 
 {
+    private static TcpClient _client;
+    private static TcpListener _server;
+    private static ILogger _logger;
     public static NodeInformation NodeInformation { get; set; } = new NodeInformation();
     public static List<Client> ConnectedClients { get; set; }
-    public Node() 
-        : base()
-    {
-        NodeInformation = new NodeInformation()
-        {
-            DescriptionNode = null,
-            NodeId = null,
-            NodeName = null,
-            Port = 11247,
-        };
-    }
-
     public static void StartNode()
     {
+
         ILoggerFactory factory = LoggerFactory
             .Create(builder => builder.AddConsole());
         _logger = factory.CreateLogger("Node");
         _logger.LogInformation("node is starting.");
         ServerSetup();
         ClientSetup();
+        InitiateSlot();
+
         if (File.Exists("node-information.json"))
         {
             var configuration = File.ReadAllText("node-information.json");
@@ -88,20 +82,24 @@ public class Node : Peer
         }
         _logger.LogError("a client was connected wrongly.");
     }
-    private async Task InitiateSlotAsync()
+    private static void InitiateSlot()
     {
         for (var x = 0; x < NodeInformation.ConnectedClientMax; x++)
         {
             ConnectedClients.Add(new Client());
         }
     }
-    private async Task ValideBlockAsync()
+    private static void ValideBlock()
     {
-        await Task.Run(() =>
-        {
-            throw new NotImplementedException();
-        });
+        throw new NotImplementedException();
     }
-    
-    
+    private static void ServerSetup()
+    {
+        _server = TcpListener.Create(11247);
+        _server.Start();
+    }
+    private static void ClientSetup()
+    {
+        _client = new TcpClient();
+    }
 }
