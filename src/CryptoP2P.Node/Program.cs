@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CryptoP2P.Network.BlockChain;
+using Microsoft.Extensions.Logging;
 
 public class Program
 {
@@ -9,5 +10,6 @@ public class Program
         
         ILogger logger = factory.CreateLogger("Start");
         logger.LogInformation("start of the connection with the crypto network. . .");
+        
     }
 }

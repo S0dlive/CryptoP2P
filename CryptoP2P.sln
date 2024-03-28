@@ -3,7 +3,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{F2904AA6-2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0BA8CE87-6751-4205-9847-6CC764D2F8E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoP2P.Network", "src\CryptoP2P.Network\CryptoP2P.Network.csproj", "{C852A542-17DF-4966-AB48-A4643B75F070}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoP2P.Node", "src\CryptoP2P.Node\CryptoP2P.Node.csproj", "{C852A542-17DF-4966-AB48-A4643B75F070}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoP2P.Tests", "test\CryptoP2P.Tests\CryptoP2P.Tests.csproj", "{8BB5D004-58C0-4AE2-8CD3-9FE890A3D95A}"
 EndProject
