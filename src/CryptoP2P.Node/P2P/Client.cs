@@ -10,7 +10,7 @@ public class Client
     public string ClientName { get; set; }
     public NetworkStream Stream { get; set; }
     public DateTime ConnectedSince { get; set; }
-    private byte[] receivedBuffer { get; set; }
+    private byte[] receivedBuffer;
 
     public void ConnectWithServer(TcpClient client)
     {
