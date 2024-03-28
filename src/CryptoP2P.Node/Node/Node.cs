@@ -5,16 +5,16 @@ using Microsoft.Extensions.Logging;
 
 namespace CryptoP2P.Network.Node;
 
-public static class Node 
+public class Node
 {
-    private static TcpClient _client;
-    private static TcpListener _server;
-    private static ILogger _logger;
-    public static NodeInformation NodeInformation { get; set; } = new NodeInformation();
-    public static List<Client> ConnectedClients { get; set; }
-    public static void StartNode()
-    {
+    private TcpClient _client;
+    private TcpListener _server;
+    private ILogger _logger;
+    public NodeInformation NodeInformation { get; set; } = new NodeInformation();
+    public List<Client> ConnectedClients { get; set; }
 
+    public Node()
+    {
         ILoggerFactory factory = LoggerFactory
             .Create(builder => builder.AddConsole());
         _logger = factory.CreateLogger("Node");
@@ -22,7 +22,9 @@ public static class Node
         ServerSetup();
         ClientSetup();
         InitiateSlot();
-
+    }
+    public void StartNode()
+    {
         if (File.Exists("node-information.json"))
         {
             var configuration = File.ReadAllText("node-information.json");
@@ -57,7 +59,7 @@ public static class Node
       
     }
 
-    private static void TCPConnectionCallback(
+    private void TCPConnectionCallback(
         IAsyncResult result)
     {
         TcpClient client = _server.EndAcceptTcpClient(result);
@@ -82,23 +84,23 @@ public static class Node
         }
         _logger.LogError("a client was connected wrongly.");
     }
-    private static void InitiateSlot()
+    private void InitiateSlot()
     {
         for (var x = 0; x < NodeInformation.ConnectedClientMax; x++)
         {
             ConnectedClients.Add(new Client());
         }
     }
-    private static void ValideBlock()
+    private void ValideBlock()
     {
         throw new NotImplementedException();
     }
-    private static void ServerSetup()
+    private void ServerSetup()
     {
         _server = TcpListener.Create(11247);
         _server.Start();
     }
-    private static void ClientSetup()
+    private void ClientSetup()
     {
         _client = new TcpClient();
     }
