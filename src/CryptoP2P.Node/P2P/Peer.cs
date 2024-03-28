@@ -18,14 +18,13 @@ public abstract class Peer
         ClientSetup();
     }
 
-    private async Task ServerSetup()
+    protected static void ServerSetup()
     {
         _server = TcpListener.Create(11247);
-        var sockets = await _server.AcceptSocketAsync();
-        var tcpRequest = await _server.AcceptTcpClientAsync();
+        _server.Start();
     }
     
-    private async Task ClientSetup()
+    protected static void ClientSetup()
     {
         _client = new TcpClient();
     }
