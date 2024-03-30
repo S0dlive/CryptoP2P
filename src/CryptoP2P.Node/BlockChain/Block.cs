@@ -3,11 +3,13 @@ using System.Text;
 
 namespace CryptoP2P.Network.BlockChain;
 
-public abstract class Chain
+public class Block
 {
     public string Hash { get; set; }
+    public BlockType Type { get; set; }
+    public Stat Stat { get; set; }
     public string PreviousHash { get; set; }
-    public virtual List<object> Data { get; set; }
+    public List<object> Data { get; set; }
     
     protected string GenerateRandomString(int length)
     {
@@ -27,4 +29,16 @@ public abstract class Chain
         }
         return hash.ToString();
     }
+}
+
+public enum Stat
+{
+    
+}
+
+public enum BlockType
+{
+    Transaction, 
+    Wallet,
+    SimpleBlock
 }
