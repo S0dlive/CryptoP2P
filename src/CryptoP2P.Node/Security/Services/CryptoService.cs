@@ -11,8 +11,8 @@ public static class CryptoService // TODO: IoC implementation.
             = new RSACryptoServiceProvider(4096);
         var publicKey = cryptoServiceProvider.ExportParameters(false);
         var privateKey = cryptoServiceProvider.ExportParameters(true);
-        return new KeyPeer(Convert.ToBase64String(publicKey.Modulus),
-            Convert.ToBase64String(privateKey.D));
+        return new KeyPeer(publicKey.Modulus, 
+            privateKey.D);
     }
 
     public static bool VerifyData(byte[] data, byte[] signature, RSAParameters publicKey)
@@ -25,5 +25,4 @@ public static class CryptoService // TODO: IoC implementation.
         }
     }
 }
-
-public record KeyPeer(string PublicKey, string PrivateKey);
+public record KeyPeer(byte[] PublicKey, byte[] PrivateKey);
