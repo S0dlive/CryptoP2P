@@ -12,7 +12,6 @@ public class Node
     private ILogger _logger;
     public NodeInformation NodeInformation { get; set; } = new NodeInformation();
     public List<Client> ConnectedClients { get; set; }
-
     public Node()
     {
         ILoggerFactory factory = LoggerFactory
