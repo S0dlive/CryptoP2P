@@ -23,7 +23,6 @@ public class WalletContext
             return (wallet, keyPeer.PrivateKey);
         }
     }
-    
     public bool DeleteWallet(Wallet wallet)
     {
         return Wallets.Remove(wallet);
