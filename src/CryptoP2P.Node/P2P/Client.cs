@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Sockets;
+using CryptoP2P.Network.Node;
 
 namespace CryptoP2P.Network.P2P;
 
@@ -20,8 +21,27 @@ public class Client
 
         receivedBuffer = new byte[4096];
         Stream.BeginRead(receivedBuffer, 0, 4096, ReceivedCallback, null);
+        
+        NodeSender.SendWelcomeMessage(ClientId,
+            "welcome in the node");
     }
 
+    public void SendData(Packet packet)
+    {
+        try
+        {
+            if (TCPClient != null)
+            {
+                Stream.BeginWrite(packet.ToArray(), 0, packet.Length(), null, null);
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+    
     private void ReceivedCallback(IAsyncResult ar)
     {
         try
@@ -34,6 +54,7 @@ public class Client
             }
 
             byte[] data = new byte[4096];
+            Array.Copy(receivedBuffer, data, byteLenght);
             Stream.BeginRead(receivedBuffer, 0, 4096, ReceivedCallback, null);
         }
         catch (Exception e)
