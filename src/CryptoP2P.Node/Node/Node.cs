@@ -20,7 +20,6 @@ public class Node
         _logger.LogInformation("node is starting.");
         ServerSetup();
         ClientSetup();
-        InitiateSlot();
     }
     public void StartNode()
     {
@@ -33,14 +32,18 @@ public class Node
                 NodeInformation.NodeId = deserialize.NodeId;
                 NodeInformation.DescriptionNode = deserialize.DescriptionNode;
                 NodeInformation.NodeName = deserialize.NodeName;
+                NodeInformation.ConnectedClientMax = deserialize.ConnectedClientMax;
                 NodeInformation.Port = deserialize.Port;
+                InitiateSlot();
                 _logger.LogInformation("node is start. on port " + NodeInformation.Port);
                 _server.BeginAcceptTcpClient(new AsyncCallback(TCPConnectionCallback), null);
             }
             catch (Exception e)
             {
                 _logger.LogError("error with the configuration file. Is surely the not good format.");
-                throw;
+                File.Delete("node-information.json");
+                _logger.LogCritical("node will be restarted");
+                StartNode();
             }
         }
         else
@@ -51,6 +54,7 @@ public class Node
             NodeInformation.NodeName = "first"; // TODO: A real description
             NodeInformation.Port = 11247; // TODO: A real description
             NodeInformation.ConnectedClientMax = 40000; // TODO: A real description
+            InitiateSlot();
             configuration.Dispose();
             File.WriteAllText("node-information.json",
                 JsonSerializer.Serialize<NodeInformation>(NodeInformation));
@@ -76,8 +80,8 @@ public class Node
             var c = ConnectedClients[i].TCPClient;
             if ( c == null)
             {
-                excorceClient.ConnectWithServer(client);
                 ConnectedClients[i] = excorceClient;
+                excorceClient.ConnectWithServer(client);
                 return;
             }
         }
@@ -85,6 +89,7 @@ public class Node
     }
     private void InitiateSlot()
     {
+        ConnectedClients = new List<Client>(NodeInformation.ConnectedClientMax);
         for (var x = 0; x < NodeInformation.ConnectedClientMax; x++)
         {
             ConnectedClients.Add(new Client());
